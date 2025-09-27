@@ -1,0 +1,4 @@
+pytest==8.3.2
+
+
+#value driver, mantra, como se adapta lm para sus necesidades, checar en linkedin a los attenders 
