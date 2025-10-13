@@ -8,29 +8,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del código
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
+          cache: 'pip'
 
-      - name: Instalar dependencias
-        run: pip install -r requirements.txt
-
-      - name: Ejecutar pruebas
-        run: pytest -q
-
-  deploy:
-    needs: test
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout del código
-        uses: actions/checkout@v4
-
-      - name: Deploy (placeholder)
+      - name: Install deps
         run: |
-          echo "Desplegando a producción..."
-          echo "Todo listo 🚀"
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest -q
