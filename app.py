@@ -3,6 +3,11 @@ import sqlite3
 from pathlib import Path
 
 app = Flask(__name__)
+#----------- EndPoint para el webcheck -------------
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify(status="ok"), 200
+
 
 # ---------- Suma (tu endpoint existente) ----------
 def suma(a, b):
